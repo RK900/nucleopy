@@ -11,6 +11,10 @@ class DNA:
         self.seq = sequence
 
     def toRNA(self):
+        """
+        Converts the DNA to RNA
+        :return: RNA sequence
+        """
         rna_seq = []
         for base in self.seq:
             if base == "A":

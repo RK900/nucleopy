@@ -12,6 +12,10 @@ class RNA:
         self.seq = sequence
 
     def toDNA(self):
+        """
+        Converts RNA to DNA
+        :return: DNA sequence
+        """
         dna_seq = []
         for base in self.seq:
             if base == "A":
