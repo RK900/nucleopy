@@ -6,12 +6,12 @@ import tensorflow as tf
 import math
 
 class CNN:
-    def __init__(self,labelsize,featuresize,convolutions,pooling,
+    def __init__(self,labelsize,featuresize,convolutions,fullyconnected,
                  epochs,activation,learningrate,optimizer,dropout,batchsize):
         self.labels = labelsize
         self.features = featuresize
         self.conv = convolutions
-        self.pool = pooling
+        self.fc = fullyconnected
         self.epochs = epochs
         self.activation = activation
         self.lr = learningrate
@@ -39,13 +39,38 @@ class CNN:
     def build(self):
         weights_keys = []
         weights_values = []
+
         for i in range(len(self.conv)):
-            power = math.pow(2,i-1)
+            power = math.pow(2,i)
             weights_keys.append("w_conv%i" % i)
             weights_values.append(tf.get_variable("w_conv%i" % i,
                                     [self.features, self.features, power, power * 2],
                                     initializer=tf.random_normal_initializer()))
 
-        for i in range(len(self.pool)):
+        for i in range(len(self.fc)):
+            weights_keys.append("w_fc%i" % i)
+            weights_values.append(
+                tf.get_variable("w_fc%i" % i,
+                                    [math.pow(2,self.conv + i), math.pow(2,self.conv + i) * 2],
+                                    initializer=tf.random_normal_initializer()))
 
 
+        biases_keys = []
+        biases_values = []
+
+        for i in range(len(self.conv)):
+            power = math.pow(2, i+1)
+            weights_keys.append("b_conv%i" % i)
+            weights_values.append(tf.get_variable("b_conv%i" % i,
+                                                  [power],
+                                                  initializer=tf.random_normal_initializer()))
+
+        for i in range(len(self.fc)):
+            weights_keys.append("b_fc%i" % i)
+            weights_values.append(
+                tf.get_variable("b_fc%i" % i,
+                                    [math.pow(2,self.conv + i) * 2],
+                                    initializer=tf.random_normal_initializer()))
+
+        weights = zip(weights_keys, weights_values)
+        biases = zip(biases_keys, biases_values)
