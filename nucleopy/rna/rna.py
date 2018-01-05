@@ -28,3 +28,17 @@ class RNA:
                 dna_seq.append("C")
 
         return ''.join(dna_seq)
+
+    def toDNAonehot(self):
+        dna_seq = []
+        for base in self.seq:
+            if base == "A":
+                dna_seq.append([1,0,0,0])
+            elif base == "U":
+                dna_seq.append([0,1,0,0])
+            elif base == "G":
+                dna_seq.append([0,0,1,0])
+            elif base == "C":
+                dna_seq.append([0,0,0,1])
+
+        return ''.join(dna_seq)
