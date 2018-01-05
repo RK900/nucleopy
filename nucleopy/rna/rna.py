@@ -42,3 +42,37 @@ class RNA:
                 dna_seq.append([0,0,0,1])
 
         return ''.join(dna_seq)
+
+    def complement(self):
+        rna_seq = []
+        for base in self.seq:
+            if base == "A":
+                rna_seq.append("U")
+            elif base == "U":
+                rna_seq.append("A")
+            elif base == "G":
+                rna_seq.append("C")
+            elif base == "C":
+                rna_seq.append("G")
+
+        return ''.join(rna_seq)
+
+    def __compatible(self,base1,base2):
+        if (base1 == 'A' and base2 == 'U') or (base1 == 'U' and base2 == 'A'):
+            return True
+        elif (base1 == 'G' and base2 == 'C') or (base1 == 'C' and base2 == 'G'):
+            return True
+        else:
+            return False
+
+    def isComplement(self,otherseq):
+        if len(self.seq) != len(otherseq):
+            raise ValueError("Sequences not of same length")
+        else:
+            for i in range(len(otherseq)):
+                if self.__compatible(self.seq[i], otherseq[i]):
+                    continue
+                else:
+                    return False
+
+            return True
