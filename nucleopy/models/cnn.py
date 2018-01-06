@@ -64,7 +64,7 @@ class CNN:
     def __maxpool2d(self,x):
         return tf.nn.max_pool(x, ksize=[1, 2, 2, 1], strides=[1, 2, 2, 1], padding="SAME")
 
-    def build(self):
+    def __build(self):
         weights_keys = []
         weights_values = []
 
@@ -152,7 +152,7 @@ class CNN:
         return output
 
     def train(self):
-        prediction = self.build()
+        prediction = self.__build()
 
         with tf.name_scope('cross_entropy'):
             cost = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(logits=prediction, labels=y))
