@@ -28,19 +28,33 @@ class DNA:
 
         return ''.join(rna_seq)
 
-    def toRNAonehot(self):
-        rna_seq = []
+    def onehot(self):
+        seq = []
         for base in self.seq:
             if base == "A":
-                rna_seq.append([1,0,0,0])
+                seq.append([1,0,0,0])
             elif base == "T":
-                rna_seq.append([0,1,0,0])
+                seq.append([0,1,0,0])
             elif base == "G":
-                rna_seq.append([0,0,1,0])
+                seq.append([0,0,1,0])
             elif base == "C":
-                rna_seq.append([0,0,0,1])
+                seq.append([0,0,0,1])
 
-        return ''.join(rna_seq)
+        return seq
+
+    def integerEncoding(self):
+        seq = []
+        for base in self.seq:
+            if base == "A":
+                seq.append(1)
+            elif base == "T":
+                seq.append(2)
+            elif base == "G":
+                seq.append(3)
+            elif base == "C":
+                seq.append(4)
+
+        return seq
 
     def complement(self):
         dna_seq = []

@@ -29,19 +29,33 @@ class RNA:
 
         return ''.join(dna_seq)
 
-    def toDNAonehot(self):
-        dna_seq = []
+    def onehot(self):
+        seq = []
         for base in self.seq:
             if base == "A":
-                dna_seq.append([1,0,0,0])
+                seq.append([1,0,0,0])
             elif base == "U":
-                dna_seq.append([0,1,0,0])
+                seq.append([0,1,0,0])
             elif base == "G":
-                dna_seq.append([0,0,1,0])
+                seq.append([0,0,1,0])
             elif base == "C":
-                dna_seq.append([0,0,0,1])
+                seq.append([0,0,0,1])
 
-        return ''.join(dna_seq)
+        return seq
+
+    def integerEncoding(self):
+        seq = []
+        for base in self.seq:
+            if base == "A":
+                seq.append(1)
+            elif base == "U":
+                seq.append(2)
+            elif base == "G":
+                seq.append(3)
+            elif base == "C":
+                seq.append(4)
+
+        return seq
 
     def complement(self):
         rna_seq = []
@@ -57,7 +71,7 @@ class RNA:
 
         return ''.join(rna_seq)
 
-    def __compatible(self,base1,base2):
+    def __compatible(self, base1, base2):
         if (base1 == 'A' and base2 == 'U') or (base1 == 'U' and base2 == 'A'):
             return True
         elif (base1 == 'G' and base2 == 'C') or (base1 == 'C' and base2 == 'G'):
