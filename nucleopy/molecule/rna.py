@@ -10,6 +10,10 @@ class RNA:
         :param sequence: String sequence of nucleotides
         """
         self.seq = sequence
+        self.seq = self.seq.upper()
+
+        if 'A' not in self.seq or 'U' not in self.seq or 'G' not in self.seq or 'C' not in self.seq:
+            raise ValueError("Not a valid RNA sequence")
 
     def toDNA(self):
         """
