@@ -1,7 +1,7 @@
 """
 Creates an RNA object which contains a nucleotide sequence
 """
-
+from dna import DNA
 
 class RNA:
     def __init__(self, sequence):
@@ -27,7 +27,7 @@ class RNA:
             elif base == "C":
                 dna_seq.append("C")
 
-        return ''.join(dna_seq)
+        return DNA(''.join(dna_seq))
 
     def onehot(self):
         seq = []
