@@ -1,4 +1,9 @@
 from nucleopy.molecule import dna
 from nucleopy.molecule import rna
 
-rna = rna.RNA('AAUUGGCCCAGUA')
+r = rna.RNA('AAUUGGCCCAGUA')
+d = dna.DNA('AAACCGCCATTCG')
+
+print r.toDNA()
+print r.complement()
+print r

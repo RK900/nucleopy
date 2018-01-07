@@ -15,6 +15,9 @@ class RNA:
         if 'A' not in self.seq or 'U' not in self.seq or 'G' not in self.seq or 'C' not in self.seq:
             raise ValueError("Not a valid RNA sequence")
 
+    def __repr__(self):
+        return self.seq
+
     def toDNA(self):
         """
         Converts RNA to DNA

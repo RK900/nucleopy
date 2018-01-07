@@ -1,6 +1,7 @@
 """
 Creates a DNA object which contains a nucleotide sequence
 """
+from rna import RNA
 
 class DNA:
     def __init__(self, sequence):
@@ -13,6 +14,9 @@ class DNA:
 
         if 'A' not in self.seq or 'T' not in self.seq or 'G' not in self.seq or 'C' not in self.seq:
             raise ValueError("Not a valid DNA sequence")
+
+    def __repr__(self):
+        return self.seq
 
     def toRNA(self):
         """
@@ -30,7 +34,7 @@ class DNA:
             elif base == "C":
                 rna_seq.append("C")
 
-        return ''.join(rna_seq)
+        return RNA(''.join(rna_seq))
 
     def onehot(self):
         seq = []
