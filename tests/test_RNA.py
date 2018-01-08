@@ -1,6 +1,6 @@
 from unittest import TestCase
-from nucleopy.molecule.rna import RNA
-from nucleopy.molecule.dna import DNA
+from nucleopy.molecules.rna import RNA
+from nucleopy.molecules.dna import DNA
 
 
 class TestRNA(TestCase):

@@ -1,28 +1,26 @@
 """
 Creates a DNA object which contains a nucleotide sequence
 """
-from rna import RNA
+from nucleotide import Nucleotide
 
-class DNA:
+
+class DNA(Nucleotide):
     def __init__(self, sequence):
         """
         Creates a DNA object
         :param sequence: String sequence of nucleotides
         """
-        self.seq = sequence
-        self.seq = self.seq.upper()
+        Nucleotide.__init__(self, sequence)
 
         if 'A' not in self.seq or 'T' not in self.seq or 'G' not in self.seq or 'C' not in self.seq:
             raise ValueError("Not a valid DNA sequence")
-
-    def __repr__(self):
-        return self.seq
 
     def toRNA(self):
         """
         Converts the DNA to RNA
         :return: RNA sequence
         """
+        from rna import RNA
         rna_seq = []
         for base in self.seq:
             if base == "A":

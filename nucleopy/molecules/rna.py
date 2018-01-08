@@ -1,16 +1,16 @@
 """
 Creates an RNA object which contains a nucleotide sequence
 """
-from dna import DNA
+from nucleotide import Nucleotide
 
-class RNA:
+
+class RNA(Nucleotide):
     def __init__(self, sequence):
         """
         Creates an RNA object
         :param sequence: String sequence of nucleotides
         """
-        self.seq = sequence
-        self.seq = self.seq.upper()
+        Nucleotide.__init__(self, sequence)
 
         if 'A' not in self.seq or 'U' not in self.seq or 'G' not in self.seq or 'C' not in self.seq:
             raise ValueError("Not a valid RNA sequence")
@@ -18,11 +18,13 @@ class RNA:
     def __repr__(self):
         return self.seq
 
+    #@classmethod
     def toDNA(self):
         """
         Converts RNA to DNA
         :return: DNA sequence
         """
+        from dna import DNA
         dna_seq = []
         for base in self.seq:
             if base == "A":
