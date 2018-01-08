@@ -18,7 +18,6 @@ class RNA(Nucleotide):
     def __repr__(self):
         return self.seq
 
-    #@classmethod
     def toDNA(self):
         """
         Converts RNA to DNA
@@ -128,3 +127,21 @@ class RNA(Nucleotide):
                     return False
 
             return True
+
+    def Viennafold(self):
+        try:
+            import RNA
+            struc, energy = RNA.fold(self.seq)
+            return struc, energy
+        except ImportError:
+            print ("ViennaRNA Python library not installed. "
+                   "Please see config-ViennaRNA.md for installation details.")
+
+    def ViennaTargetEnergy(self, target_structure):
+        try:
+            import RNA
+            e = RNA.energy_of_structure(self.seq, target_structure, 0)
+            return e
+        except ImportError:
+            print ("ViennaRNA Python library not installed. "
+                   "Please see config-ViennaRNA.md for installation details.")
