@@ -16,6 +16,8 @@ class CNN:
 
         :param X: Input features
         :param y: Output labels
+        :param test_X: Test input features
+        :param test_y: Test output labels
         :param numfeatures: Number of features per point (not the overall number of features)
         :param featuresize: Size/length of the features
         :param numclasses: Number of labels/classes

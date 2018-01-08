@@ -24,6 +24,7 @@ class RNA(Nucleotide):
         Converts RNA to DNA
         :return: DNA sequence
         """
+
         from dna import DNA
         dna_seq = []
         for base in self.seq:
@@ -39,6 +40,11 @@ class RNA(Nucleotide):
         return DNA(''.join(dna_seq))
 
     def onehot(self):
+        """
+        Turns RNA sequence into one-hot encoded list
+        :return: List of one-hots
+        """
+
         seq = []
         for base in self.seq:
             if base == "A":
@@ -53,6 +59,11 @@ class RNA(Nucleotide):
         return seq
 
     def integerEncoding(self):
+        """
+        Turns RNA sequence into integer-encoded list
+        :return: List of integers
+        """
+
         seq = []
         for base in self.seq:
             if base == "A":
@@ -67,6 +78,11 @@ class RNA(Nucleotide):
         return seq
 
     def complement(self):
+        """
+        Gets the complement strand of the RNA
+        :return: Complement of the RNA sequence
+        """
+
         rna_seq = []
         for base in self.seq:
             if base == "A":
@@ -81,6 +97,13 @@ class RNA(Nucleotide):
         return ''.join(rna_seq)
 
     def __compatible(self, base1, base2):
+        """
+        Helper function to determine if two bases can be paired
+        :param base1: Nucleotide 1
+        :param base2: Nucleotide 2
+        :return: True of bases can be paired; false otherwise
+        """
+
         if (base1 == 'A' and base2 == 'U') or (base1 == 'U' and base2 == 'A'):
             return True
         elif (base1 == 'G' and base2 == 'C') or (base1 == 'C' and base2 == 'G'):
@@ -88,7 +111,13 @@ class RNA(Nucleotide):
         else:
             return False
 
-    def isComplement(self,otherseq):
+    def isComplement(self, otherseq):
+        """
+        Checks of two sequences are complements
+        :param otherseq: Another RNA sequence
+        :return: True if strands are complements; false otherwise
+        """
+
         if len(self.seq) != len(otherseq):
             raise ValueError("Sequences not of same length")
         else:

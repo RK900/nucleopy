@@ -10,6 +10,7 @@ class DNA(Nucleotide):
         Creates a DNA object
         :param sequence: String sequence of nucleotides
         """
+
         Nucleotide.__init__(self, sequence)
 
         if 'A' not in self.seq or 'T' not in self.seq or 'G' not in self.seq or 'C' not in self.seq:
@@ -20,6 +21,7 @@ class DNA(Nucleotide):
         Converts the DNA to RNA
         :return: RNA sequence
         """
+
         from rna import RNA
         rna_seq = []
         for base in self.seq:
@@ -35,6 +37,11 @@ class DNA(Nucleotide):
         return RNA(''.join(rna_seq))
 
     def onehot(self):
+        """
+        Turns DNA sequence into one-hot encoded list
+        :return: List of one-hots
+        """
+
         seq = []
         for base in self.seq:
             if base == "A":
@@ -49,6 +56,11 @@ class DNA(Nucleotide):
         return seq
 
     def integerEncoding(self):
+        """
+        Turns DNA sequence into integer-encoded list
+        :return: List of integers
+        """
+
         seq = []
         for base in self.seq:
             if base == "A":
@@ -63,6 +75,11 @@ class DNA(Nucleotide):
         return seq
 
     def complement(self):
+        """
+        Gets the complement strand of the DNA
+        :return: Complement of the DNA sequence
+        """
+
         dna_seq = []
         for base in self.seq:
             if base == "A":
@@ -76,7 +93,14 @@ class DNA(Nucleotide):
 
         return ''.join(dna_seq)
 
-    def __compatible(self,base1,base2):
+    def __compatible(self, base1, base2):
+        """
+        Helper function to determine if two bases can be paired
+        :param base1: Nucleotide 1
+        :param base2: Nucleotide 2
+        :return: True of bases can be paired; false otherwise
+        """
+
         if (base1 == 'A' and base2 == 'T') or (base1 == 'T' and base2 == 'A'):
             return True
         elif (base1 == 'G' and base2 == 'C') or (base1 == 'C' and base2 == 'G'):
@@ -84,7 +108,13 @@ class DNA(Nucleotide):
         else:
             return False
 
-    def isComplement(self,otherseq):
+    def isComplement(self, otherseq):
+        """
+        Checks of two sequences are complements
+        :param otherseq: Another DNA sequence
+        :return: True if strands are complements; false otherwise
+        """
+
         if len(self.seq) != len(otherseq):
             raise ValueError("Sequences not of same length")
         else:
