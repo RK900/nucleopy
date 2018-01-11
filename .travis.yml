@@ -2,6 +2,9 @@
   python:
     - "2.7"
     - "nightly"
+  install:
+    - pip install tensorflow
+    - pip install numpy
   script:
     - py.test
   os:
