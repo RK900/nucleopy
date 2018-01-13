@@ -14,3 +14,4 @@ print (d.onehot())
 print (r.integerEncoding())
 
 print (r.complement())
+print r.isComplement(r.complement())

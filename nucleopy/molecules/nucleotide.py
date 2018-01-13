@@ -22,6 +22,14 @@ class Nucleotide(object):
 
         return self.seq
 
+    def __len__(self):
+        """
+        Gets length of sequence
+        :return: Integer length of nucleotide sequence
+        """
+
+        return len(self.seq)
+
     def sequence(self):
         """
         Returns a sequence
@@ -95,7 +103,8 @@ class Nucleotide(object):
 
         return seq
 
-    def __compatible(self, base1, base2):
+    @classmethod
+    def __compatible(cls, base1, base2):
         """
         Helper function to determine if two bases can be paired
         :param base1: Nucleotide 1
@@ -123,9 +132,7 @@ class Nucleotide(object):
             raise ValueError("Sequences not of same length")
         else:
             for i in range(len(otherseq)):
-                if self.__compatible(self.seq[i], otherseq[i]):
-                    continue
-                else:
+                if not Nucleotide.__compatible(self.seq[i], otherseq[i]):
                     return False
 
             return True
