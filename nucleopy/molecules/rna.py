@@ -33,7 +33,7 @@ class RNA(Nucleotide):
             elif base == "C":
                 rna_seq.append("G")
 
-        return ''.join(rna_seq)
+        return RNA(''.join(rna_seq))
 
 
     def Viennafold(self):

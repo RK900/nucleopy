@@ -34,5 +34,5 @@ class DNA(Nucleotide):
             elif base == "C":
                 dna_seq.append("G")
 
-        return ''.join(dna_seq)
+        return DNA(''.join(dna_seq))
 

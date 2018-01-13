@@ -17,7 +17,7 @@ class TestRNA(TestCase):
         self.assertTrue(self.complement1.isComplement(self.complement2.sequence()))
 
     def test_complement(self):
-        self.assertEqual(self.complement1.complement(), str(self.complement2))
+        self.assertEqual(self.complement1.complement().sequence(), self.complement2.sequence())
 
 
 if __name__ == '__main__':
