@@ -2,6 +2,7 @@
 Creates a DNA object which contains a nucleotide sequence
 """
 from nucleotide import Nucleotide
+import re
 
 
 class DNA(Nucleotide):
@@ -13,7 +14,7 @@ class DNA(Nucleotide):
 
         Nucleotide.__init__(self, sequence)
 
-        if 'A' not in self.seq or 'T' not in self.seq or 'G' not in self.seq or 'C' not in self.seq:
+        if re.search(r'[^ATCG]', self.seq) is not None:
             raise ValueError("Not a valid DNA sequence")
 
     def complement(self):

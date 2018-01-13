@@ -2,6 +2,7 @@
 Creates an RNA object which contains a nucleotide sequence
 """
 from nucleotide import Nucleotide
+import re
 
 
 class RNA(Nucleotide):
@@ -12,7 +13,7 @@ class RNA(Nucleotide):
         """
         Nucleotide.__init__(self, sequence)
 
-        if 'A' not in self.seq or 'U' not in self.seq or 'G' not in self.seq or 'C' not in self.seq:
+        if re.search(r'[^AUCG]', self.seq) is not None:
             raise ValueError("Not a valid RNA sequence")
 
     def complement(self):
