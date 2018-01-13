@@ -47,6 +47,8 @@ class RNA(Nucleotide):
 
     def ViennaTargetEnergy(self, target_structure):
         try:
+            if len(self.seq) != len(target_structure):
+                raise ValueError("Nucleotide sequence and structure not of same length")
             import RNA
             e = RNA.energy_of_structure(self.seq, target_structure, 0)
             return e
