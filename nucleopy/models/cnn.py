@@ -2,10 +2,12 @@
 Creates a convolutional neural network model
 in TensorFlow
 """
+
 import tensorflow as tf
 import math
 import numpy as np
 import os
+
 
 class CNN:
     def __init__(self, X, y, test_X, test_y, numfeatures, featuresize, numclasses,
@@ -154,6 +156,11 @@ class CNN:
         return output
 
     def train(self):
+        """
+        Trains the CNN
+        :return: A trained and saved model
+        """
+
         prediction = self.__build()
 
         with tf.name_scope('cross_entropy'):

@@ -7,6 +7,7 @@ import numpy as np
 import os, math
 from cnn import CNN
 
+
 class DNN(CNN):
     def __init__(self, X, y, test_X, test_y, numfeatures, featuresize, numclasses,
                  layers, nodes, epochs, activation, learningrate=0.001,
