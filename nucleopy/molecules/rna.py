@@ -11,6 +11,7 @@ class RNA(Nucleotide):
         Creates an RNA object
         :param sequence: String sequence of nucleotides
         """
+
         Nucleotide.__init__(self, sequence)
 
         if re.search(r'[^AUCG]', self.seq) is not None:
@@ -37,6 +38,11 @@ class RNA(Nucleotide):
 
 
     def Viennafold(self):
+        """
+        Returns structure and energy of the RNA sequence
+        :return: Structure (in dot-bracket) and energy (in kcal)
+        """
+
         try:
             import RNA
             struc, energy = RNA.fold(self.seq)
@@ -46,6 +52,12 @@ class RNA(Nucleotide):
                    "Please see config-ViennaRNA.md for installation details.")
 
     def ViennaTargetEnergy(self, target_structure):
+        """
+        Gets energy of RNA molecule forced to fold into a certain shape
+        :param target_structure: The forced structure
+        :return: Free energy (in kcal)
+        """
+
         try:
             if len(self.seq) != len(target_structure):
                 raise ValueError("Nucleotide sequence and structure not of same length")

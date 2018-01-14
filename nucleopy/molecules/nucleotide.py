@@ -42,6 +42,7 @@ class Nucleotide(object):
         Sets a new sequence
         :param new_sequence: New sequence to be in the Nucleotide object
         """
+
         self.seq = new_sequence
 
     def toRNA(self):
