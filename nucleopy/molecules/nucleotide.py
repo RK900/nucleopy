@@ -45,27 +45,6 @@ class Nucleotide(object):
 
         self.seq = new_sequence
 
-    def toRNA(self):
-        """
-        Converts the DNA to RNA
-        :return: RNA sequence
-        """
-
-        from rna import RNA
-        rna_seq = self.seq.replace("T", "U")
-
-        return RNA(rna_seq)
-
-    def toDNA(self):
-        """
-        Converts RNA to DNA
-        :return: DNA sequence
-        """
-
-        from dna import DNA
-        dna_seq = self.seq.replace("U", "T")
-        return DNA(dna_seq)
-
     def onehot(self):
         """
         Turns DNA sequence into one-hot encoded list

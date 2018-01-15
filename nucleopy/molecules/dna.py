@@ -36,3 +36,14 @@ class DNA(Nucleotide):
 
         return DNA(''.join(dna_seq))
 
+    def toRNA(self):
+        """
+        Converts the DNA to RNA
+        :return: RNA sequence
+        """
+
+        from rna import RNA
+        rna_seq = self.seq.replace("T", "U")
+
+        return RNA(rna_seq)
+

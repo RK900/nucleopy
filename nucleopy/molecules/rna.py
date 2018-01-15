@@ -36,6 +36,16 @@ class RNA(Nucleotide):
 
         return RNA(''.join(rna_seq))
 
+    def toDNA(self):
+        """
+        Converts RNA to DNA
+        :return: DNA sequence
+        """
+
+        from dna import DNA
+        dna_seq = self.seq.replace("U", "T")
+        return DNA(dna_seq)
+
 
     def Viennafold(self):
         """
