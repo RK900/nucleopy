@@ -9,5 +9,10 @@ class TestNucleotide(TestCase):
         self.rna2 = RNA('UAACGGUCAAG')
         self.dna1 = DNA('ATTGCCAGTTC')
         self.dna2 = DNA('TAACGGTCAAG')
+        self.int = [1,2,2,3,4,4,1,3,2,2,4]
+        self.onehot = [[1,0,0,0],[0,1,0,0],[0,1,0,0],
+                       [0,0,1,0],[0,0,0,1],[0,0,0,1],
+                       [1,0,0,0],[0,0,1,0],[0,1,0,0],
+                       [0,1,0,0],[0,0,0,1]]
 
 
