@@ -56,6 +56,34 @@ class Nucleotide(object):
         else:
             raise TypeError("Invalid argument")
 
+    def __setitem__(self, key, value):
+        """
+        Supports assignment
+        :param key: Index
+        :param value: String of new sequence
+        """
+
+        s = []
+        for ch in self.seq:
+            s.append(ch)
+
+        if isinstance(key, slice):
+            # return ''.join([self[ii] for ii in range(*key.indices(len(self)))])
+
+            for ii in range(*key.indices(len(self))):
+                s[ii] = value[ii]
+            self.seq = ''.join(s)
+
+        elif isinstance(key, int):
+            if key < 0:
+                key += len(self)
+            if key >= len(self):
+                raise IndexError("Index out of range")
+            s[key] = value
+            self.seq = ''.join(s)
+
+        else:
+            raise TypeError("Invalid argument")
 
     def sequence(self):
         """
