@@ -30,6 +30,33 @@ class Nucleotide(object):
 
         return len(self.seq)
 
+    def __iter__(self):
+        """
+        Iterates over sequence
+        """
+
+        for i in self.seq:
+            yield i
+
+    def __getitem__(self, item):
+        """
+        Allows for indexing
+        :param item: Index
+        """
+
+        if isinstance(item, slice):
+            return ''.join([self[ii] for ii in range(*item.indices(len(self)))])
+
+        elif isinstance(item, int):
+            if item < 0:
+                item += len(self)
+            if item >= len(self):
+                raise IndexError("Index out of range")
+            return self.seq[item]
+        else:
+            raise TypeError("Invalid argument")
+
+
     def sequence(self):
         """
         Returns a sequence
