@@ -1,6 +1,7 @@
 """
 Molecule superclass for DNA and RNA classes
 """
+import re
 
 
 class Nucleotide(object):
@@ -13,6 +14,25 @@ class Nucleotide(object):
 
         self.seq = sequence
         self.seq = self.seq.upper()
+
+    def verify(self, base):
+        """
+        Checks whether object has proper bases
+        :param base: 'dna' or 'rna'
+        :return: Nothing if ok; TypeError if invalid sequence
+        """
+
+        if base == 'dna':
+            if re.search(r'[^ATCG]', self.seq) is not None:
+                pass
+            else:
+                raise TypeError("Not a DNA sequence")
+
+        elif base == 'rna':
+            if re.search(r'[^AUCG]', self.seq) is not None:
+                pass
+            else:
+                raise TypeError("Not an RNA sequence")
 
     def __repr__(self):
         """

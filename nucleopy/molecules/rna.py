@@ -17,6 +17,9 @@ class RNA(Nucleotide):
         if re.search(r'[^AUCG]', self.seq) is not None:
             raise ValueError("Not a valid RNA sequence")
 
+    def verify(self, base='rna'):
+        Nucleotide.verify(self, base)
+
     def complement(self):
         """
         Gets the complement strand of the RNA
@@ -45,6 +48,12 @@ class RNA(Nucleotide):
         from dna import DNA
         dna_seq = self.seq.replace("U", "T")
         return DNA(dna_seq)
+
+    def setSequence(self, new_sequence):
+        self.verify(Nucleotide.setSequence(self, new_sequence))
+
+    def __setitem__(self, key, value):
+        self.verify(Nucleotide.__setitem__(self, key, value))
 
 
     def Viennafold(self):

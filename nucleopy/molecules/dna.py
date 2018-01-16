@@ -17,6 +17,9 @@ class DNA(Nucleotide):
         if re.search(r'[^ATCG]', self.seq) is not None:
             raise ValueError("Not a valid DNA sequence")
 
+    def verify(self, base='dna'):
+        Nucleotide.verify(self, base)
+
     def complement(self):
         """
         Gets the complement strand of the DNA
@@ -46,4 +49,10 @@ class DNA(Nucleotide):
         rna_seq = self.seq.replace("T", "U")
 
         return RNA(rna_seq)
+
+    def setSequence(self, new_sequence):
+        self.verify(Nucleotide.setSequence(self, new_sequence))
+
+    def __setitem__(self, key, value):
+        self.verify(Nucleotide.__setitem__(self, key, value))
 
