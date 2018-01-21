@@ -1,7 +1,7 @@
 """
 Creates a DNA object which contains a nucleotide sequence
 """
-from nucleotide import Nucleotide
+from nucleopy.molecules.nucleotide import Nucleotide
 import re
 
 
@@ -45,7 +45,7 @@ class DNA(Nucleotide):
         :return: RNA sequence
         """
 
-        from rna import RNA
+        from nucleopy.molecules.rna import RNA
         rna_seq = self.seq.replace("T", "U")
 
         return RNA(rna_seq)

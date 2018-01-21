@@ -1,7 +1,7 @@
 """
 Creates an RNA object which contains a nucleotide sequence
 """
-from nucleotide import Nucleotide
+from nucleopy.molecules.nucleotide import Nucleotide
 import re
 
 
@@ -45,7 +45,7 @@ class RNA(Nucleotide):
         :return: DNA sequence
         """
 
-        from dna import DNA
+        from nucleopy.molecules.dna import DNA
         dna_seq = self.seq.replace("U", "T")
         return DNA(dna_seq)
 
@@ -81,14 +81,14 @@ class RNA(Nucleotide):
                "GAU": "Asp", "GAC": "Asp", "GAA": "Glu", "GAG": "Glu",
                "GGU": "Gly", "GGC": "Gly", "GGA": "Gly", "GGG": "Gly"}
 
-        if self.seq % 9 != 0:
-            raise ValueError("Not in sets of three")
+        # if self.seq % 3 != 0:
+        #     raise ValueError("Not in sets of three")
         set3 = amino_split(self.seq, 3)
 
         for codon in set3:
-            protein.append(map[codon])
+            protein.append(map[codon]+ " ")
 
-        return protein
+        return ''.join(protein)
 
 
     def Viennafold(self):
