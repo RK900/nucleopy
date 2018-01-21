@@ -58,6 +58,13 @@ future = now + 5
 b = True
 
 screen.fill(pygame.Color('pink'))
+intro = myfont.render("This is the nucleus.",
+                      False, (0,0,0))
+intro2 = myfont.render("The DNA has just been transcripted to", False, (0,0,0))
+screen.blit(intro, (100,20))
+intro3 = myfont.render("RNA and it heads to the ribosomes.", False, (0,0,0))
+screen.blit(intro2, (100,60))
+screen.blit(intro3, (100,100))
 s = myfont.render("DNA sequence:        "+d.sequence(), False, (0,0,0))
 
 screen.blit(s, (100,190))
@@ -65,12 +72,12 @@ screen.blit(s, (100,190))
 r = myfont.render("Complement RNA:   " + d.toRNA().sequence(), False, (0, 0, 0))
 screen.blit(r, (100,230))
 pygame.display.update()
-pygame.time.wait(2000)
+pygame.time.wait(12000) #12000
 screen.fill(pygame.Color('white'))
 pygame.display.update()
 
 begin_x = 50
-begin_y = 200
+begin_y = 240
 
 # rect = pygame.rect.Rect((64,200,begin_x,begin_y))
 # rib = pygame.rect.Rect((200, 250, 16, 16))
@@ -102,24 +109,61 @@ while True:
                 begin_y += 10
 
     r = pygame.rect.Rect((begin_x, begin_y, 70, 15))
-    rib = pygame.rect.Rect((50, 40, 16, 16)) # first should be 600
+    rib = pygame.rect.Rect((550, 320, 16, 16)) # first should be 600
+    v1 = pygame.rect.Rect((515, 300, 16, 16))
+    v2 = pygame.rect.Rect((500, 320, 16, 16))
+    v3 = pygame.rect.Rect((300, 280, 16, 16))
+    v4 = pygame.rect.Rect((325, 330, 16, 16))
+    v5 = pygame.rect.Rect((410, 270, 16, 16))
+    v6 = pygame.rect.Rect((460, 370, 16, 16))
+    v7 = pygame.rect.Rect((430, 315, 16, 16))
+
+    m1 = myfont.render("This is the cytoplasm.",
+                          False, (0, 0, 0))
+    m2 = myfont.render("Guide the mRNA to the purple ribosome.", False, (0, 0, 0))
+    m3 = myfont.render("Watch out for the red viruses!",False, (0,0,0))
+
 
     screen.fill(pygame.Color('white'))
+    screen.blit(m1, (100, 20))
+    screen.blit(m2, (100, 60))
+    screen.blit(m3, (100, 100))
     pygame.draw.circle(screen, pygame.Color('pink'), (0, 250), 150)
     pygame.draw.rect(screen, pygame.Color('blue'), r)
     pygame.draw.rect(screen, pygame.Color('purple'), rib)
+    pygame.draw.rect(screen, pygame.Color('red'), v1)
+    pygame.draw.rect(screen, pygame.Color('red'), v2)
+    pygame.draw.rect(screen, pygame.Color('red'), v3)
+    pygame.draw.rect(screen, pygame.Color('red'), v4)
+    pygame.draw.rect(screen, pygame.Color('red'), v5)
+    pygame.draw.rect(screen, pygame.Color('red'), v6)
+    pygame.draw.rect(screen, pygame.Color('red'), v7)
     pygame.display.update()
 
     if r.colliderect(rib):
         final = True
         break
+    if r.colliderect(v1) or r.colliderect(v2) or r.colliderect(v3) or r.colliderect(v4) or \
+            r.colliderect(v5) or r.colliderect(v6) or r.colliderect(v7):
+        break
 
 
-while final and True:
+while final:
     screen.fill(pygame.Color('purple'))
+
+    e1 = myfont.render("You made it to the ribosome!",
+                          False, (0, 0, 0))
+    e2 = myfont.render("The RNA is transcripted to amino acids, ", False, (0, 0, 0))
+    screen.blit(e1, (100, 20))
+    e3 = myfont.render("which form proteins. The proteins are ", False, (0, 0, 0))
+    e4 = myfont.render("then transported to the rest of the body.", False, (0,0,0))
+    screen.blit(e2, (100, 60))
+    screen.blit(e3, (100, 100))
+    screen.blit(e4, (100, 140))
+
     newrna = d.toRNA()
     s = myfont.render("RNA sequence: " + newrna.sequence(), False, pygame.Color('white'))
-    screen.blit(s, (100, 190))
+    screen.blit(s, (100, 230))
     r = myfont.render("Protein:             " + newrna.toProtein(), False, pygame.Color('white'))
-    screen.blit(r, (100, 230))
+    screen.blit(r, (100, 270))
     pygame.display.update()
