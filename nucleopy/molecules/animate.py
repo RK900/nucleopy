@@ -147,6 +147,12 @@ while True:
             r.colliderect(v5) or r.colliderect(v6) or r.colliderect(v7):
         break
 
+if not final:
+    screen.fill(pygame.Color('white'))
+    l = myfont.render("You Lose", False, (0,0,0))
+    screen.blit(l,(100,50))
+    pygame.display.update()
+    pygame.time.wait(5000)
 
 while final:
     screen.fill(pygame.Color('purple'))
