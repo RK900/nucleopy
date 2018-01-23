@@ -17,8 +17,11 @@ class RNA(Nucleotide):
         if re.search(r'[^AUCG]', self.seq) is not None:
             raise ValueError("Not a valid RNA sequence")
 
-    def verify(self, base='rna'):
-        Nucleotide.verify(self, base)
+    def verify(self):
+        if re.search(r'[^AUCG]', self.seq) is not None:
+            pass
+        else:
+            raise TypeError("Not an RNA sequence")
 
     def complement(self):
         """
@@ -81,14 +84,14 @@ class RNA(Nucleotide):
                "GAU": "Asp", "GAC": "Asp", "GAA": "Glu", "GAG": "Glu",
                "GGU": "Gly", "GGC": "Gly", "GGA": "Gly", "GGG": "Gly"}
 
-        # if self.seq % 3 != 0:
-        #     raise ValueError("Not in sets of three")
+        if len(self.seq) % 3 != 0:
+            raise ValueError("Not in sets of three")
         set3 = amino_split(self.seq, 3)
 
         for codon in set3:
             protein.append(map[codon]+ " ")
 
-        return ''.join(protein)
+        return (protein)
 
 
     def Viennafold(self):
