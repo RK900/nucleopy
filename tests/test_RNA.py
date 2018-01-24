@@ -21,6 +21,9 @@ class TestRNA(TestNucleotide):
     def test_onehot(self):
         self.assertEqual(self.rna1.onehot(), self.onehot)
 
+    def test_toProtein(self):
+        self.assertEqual(self.rna3.toProtein(), ['Asn', 'Cys'])
+
 
 if __name__ == '__main__':
     unittest.main()

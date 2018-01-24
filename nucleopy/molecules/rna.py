@@ -54,7 +54,7 @@ class RNA(Nucleotide):
         protein = []
         amino_split = lambda x, n, acc=[]: amino_split(x[n:], n, acc + [(x[:n])]) if x else acc
 
-        map = {"UUU": "Phe", "UUC": "Phe", "UUA": "Leu", "UUG": "Leu",
+        codons = {"UUU": "Phe", "UUC": "Phe", "UUA": "Leu", "UUG": "Leu",
                "UCU": "Ser", "UCC": "Ser", "UCA": "Ser", "UCG": "Ser",
                "UAU": "Tyr", "UAC": "Tyr", "UAA": "STOP", "UAG": "STOP",
                "UGU": "Cys", "UGC": "Cys", "UGA": "STOP", "UGG": "Trp",
@@ -76,7 +76,7 @@ class RNA(Nucleotide):
         set3 = amino_split(self.seq, 3)
 
         for codon in set3:
-            protein.append(map[codon]+ " ")
+            protein.append(codons[codon])
 
         return (protein)
 

@@ -7,6 +7,7 @@ class TestNucleotide(TestCase):
     def setUp(self):
         self.rna1 = RNA('AUUGCCAGUUC')
         self.rna2 = RNA('UAACGGUCAAG')
+        self.rna3 = RNA('AAUUGC')
         self.dna1 = DNA('ATTGCCAGTTC')
         self.dna2 = DNA('TAACGGTCAAG')
         self.int = [1,2,2,3,4,4,1,3,2,2,4]
