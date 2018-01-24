@@ -11,17 +11,10 @@ class RNA(Nucleotide):
         Creates an RNA object
         :param sequence: String sequence of nucleotides
         """
-
-        self.seq = sequence
-        self.seq = self.seq.upper()
+        Nucleotide.__init__(self, sequence)
 
         if re.search(r'[^AUCG]', self.seq) is not None:
             raise ValueError("Not a valid RNA sequence")
-
-    def verify(self, seq):
-        if re.search(r'[^AUCG]', seq) is None:
-            return False
-        return True
 
     def complement(self):
         """
@@ -51,16 +44,6 @@ class RNA(Nucleotide):
         from nucleopy.molecules.dna import DNA
         dna_seq = self.seq.replace("U", "T")
         return DNA(dna_seq)
-
-    def setSequence(self, new_sequence):
-        #self.seq = new_sequence
-        if re.search(r'[^AUCG]', new_sequence) is not None:
-            raise TypeError("Not a valid RNA sequence")
-        self.seq = new_sequence
-
-    def __setitem__(self, key, value):
-        self.verify(value)
-        Nucleotide.__setitem__(self, key, value)
 
     def toProtein(self):
         """

@@ -15,6 +15,3 @@ print (d.onehot())
 print (r.integerEncoding())
 
 print (r.complement())
-
-#print r.setSequence('m')
-r[2] = 'm'

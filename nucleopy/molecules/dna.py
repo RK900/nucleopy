@@ -11,17 +11,10 @@ class DNA(Nucleotide):
         Creates a DNA object
         :param sequence: String sequence of nucleotides
         """
-
-        self.seq = sequence
-        self.seq = self.seq.upper()
+        Nucleotide.__init__(self, sequence)
 
         if re.search(r'[^ATCG]', self.seq) is not None:
             raise ValueError("Not a valid DNA sequence")
-
-    def verify(self):
-        if re.search(r'[^ATCG]', self.seq) is None:
-            raise TypeError("Not a DNA sequence")
-
 
     def complement(self):
         """
@@ -52,13 +45,3 @@ class DNA(Nucleotide):
         rna_seq = self.seq.replace("T", "U")
 
         return RNA(rna_seq)
-
-    def setSequence(self, new_sequence):
-        # self.seq = new_sequence
-        if re.search(r'[^AUCG]', new_sequence) is not None:
-            raise TypeError("Not a valid DNA sequence")
-        self.seq = new_sequence
-
-    def __setitem__(self, key, value):
-        self.verify(Nucleotide.__setitem__(self, key, value))
-

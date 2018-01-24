@@ -5,6 +5,14 @@ import re
 
 
 class Nucleotide(object):
+    def __init__(self, sequence):
+        """
+        Creates an RNA object
+        :param sequence: String sequence of nucleotides
+        """
+
+        self.seq = sequence
+        self.seq = self.seq.upper()
 
     def __repr__(self):
         """
@@ -54,6 +62,8 @@ class Nucleotide(object):
         :param key: Index
         :param value: String of new sequence
         """
+        from nucleopy.molecules.dna import DNA
+        from nucleopy.molecules.rna import RNA
 
         s = []
         for ch in self.seq:
@@ -77,6 +87,16 @@ class Nucleotide(object):
         else:
             raise TypeError("Invalid argument")
 
+        self.seq = self.seq.upper()
+
+        if type(self) == DNA:
+            if re.search(r'[^ATCG]', self.seq) is not None:
+                raise TypeError("Not a valid DNA sequence")
+
+        if type(self) == RNA:
+            if re.search(r'[^AUCG]', self.seq) is not None:
+                raise TypeError("Not a valid RNA sequence")
+
     def sequence(self):
         """
         Returns a sequence
@@ -84,13 +104,24 @@ class Nucleotide(object):
         """
         return self.seq
 
-    # def setSequence(self, new_sequence):
-    #     """
-    #     Sets a new sequence
-    #     :param new_sequence: New sequence to be in the Nucleotide object
-    #     """
-    #
-    #     self.seq = new_sequence
+    def setSequence(self, new_sequence):
+        """
+        Sets a new sequence
+        :param new_sequence: New sequence to be in the Nucleotide object
+        """
+        from nucleopy.molecules.dna import DNA
+        from nucleopy.molecules.rna import RNA
+
+        self.seq = new_sequence
+        self.seq = self.seq.upper()
+
+        if type(self) == DNA:
+            if re.search(r'[^ATCG]', self.seq) is not None:
+                raise TypeError("Not a valid DNA sequence")
+
+        if type(self) == RNA:
+            if re.search(r'[^AUCG]', self.seq) is not None:
+                raise TypeError("Not a valid RNA sequence")
 
     def onehot(self):
         """
@@ -163,3 +194,6 @@ class Nucleotide(object):
                     return False
 
             return True
+
+    def test(self):
+        return type(self)
