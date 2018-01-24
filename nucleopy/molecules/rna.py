@@ -12,16 +12,16 @@ class RNA(Nucleotide):
         :param sequence: String sequence of nucleotides
         """
 
-        Nucleotide.__init__(self, sequence)
+        self.seq = sequence
+        self.seq = self.seq.upper()
 
         if re.search(r'[^AUCG]', self.seq) is not None:
             raise ValueError("Not a valid RNA sequence")
 
-    def verify(self):
-        if re.search(r'[^AUCG]', self.seq) is not None:
-            pass
-        else:
-            raise TypeError("Not an RNA sequence")
+    def verify(self, seq):
+        if re.search(r'[^AUCG]', seq) is None:
+            return False
+        return True
 
     def complement(self):
         """
@@ -53,10 +53,14 @@ class RNA(Nucleotide):
         return DNA(dna_seq)
 
     def setSequence(self, new_sequence):
-        self.verify(Nucleotide.setSequence(self, new_sequence))
+        #self.seq = new_sequence
+        if re.search(r'[^AUCG]', new_sequence) is not None:
+            raise TypeError("Not a valid RNA sequence")
+        self.seq = new_sequence
 
     def __setitem__(self, key, value):
-        self.verify(Nucleotide.__setitem__(self, key, value))
+        self.verify(value)
+        Nucleotide.__setitem__(self, key, value)
 
     def toProtein(self):
         """
