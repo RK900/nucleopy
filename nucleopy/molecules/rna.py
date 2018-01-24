@@ -109,5 +109,5 @@ class RNA(Nucleotide):
             e = RNA.energy_of_structure(self.seq, target_structure, 0)
             return e
         except ImportError:
-            print ("ViennaRNA Python library not installed. "
+            raise ImportError("ViennaRNA Python library not installed. "
                    "Please see config-ViennaRNA.md for installation details.")

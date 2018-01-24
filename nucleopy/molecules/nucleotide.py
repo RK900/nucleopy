@@ -194,6 +194,3 @@ class Nucleotide(object):
                     return False
 
             return True
-
-    def test(self):
-        return type(self)
