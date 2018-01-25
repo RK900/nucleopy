@@ -72,14 +72,14 @@ class CNN:
         weights_keys = []
         weights_values = []
 
-        for i in range(len(self.conv)):
+        for i in range(self.conv):
             power = math.pow(2,i)
             weights_keys.append("w_conv%i" % i)
             weights_values.append(tf.get_variable("w_conv%i" % i,
                                     [self.features, self.features, power, power * 2],
                                     initializer=tf.random_normal_initializer()))
 
-        for i in range(len(self.fc)):
+        for i in range(self.fc):
             weights_keys.append("w_fc%i" % i)
             weights_values.append(
                 tf.get_variable("w_fc%i" % i,
@@ -89,14 +89,14 @@ class CNN:
         biases_keys = []
         biases_values = []
 
-        for i in range(len(self.conv)):
+        for i in range(self.conv):
             power = math.pow(2, i+1)
             weights_keys.append("b_conv%i" % i)
             weights_values.append(tf.get_variable("b_conv%i" % i,
                                                   [power],
                                                   initializer=tf.random_normal_initializer()))
 
-        for i in range(len(self.fc)):
+        for i in range(self.fc):
             weights_keys.append("b_fc%i" % i)
             weights_values.append(
                 tf.get_variable("b_fc%i" % i,
@@ -105,12 +105,12 @@ class CNN:
 
         weights = zip(weights_keys, weights_values)
         biases = zip(biases_keys, biases_values)
-        weights['out'] = tf.get_variable('w_out', [self.conv + self.fc - 1, self.labels],
-                                         initializer=tf.random_normal_initializer())
+        weights['out'] = tf.get_variable('w_out', [math.pow(2, self.conv), (self.labels)],
+                                         initializer=tf.random_normal_initializer)
         biases['out'] = tf.get_variable('b_out', [self.labels],
                                         initializer=tf.random_normal_initializer())
 
-        self.x_placeholder = tf.reshape(self.x_placeholder, shape=[-1,self.featuresize, 1])
+        self.x_placeholder = tf.reshape(self.x_placeholder, shape=[-1, self.featuresize, 1])
 
         if self.activation == 'relu':
             conv0 = tf.nn.relu(self.__conv2d(self.x_placeholder, weights['w_conv0']) + biases['b_conv0'])
@@ -121,7 +121,7 @@ class CNN:
 
         matrix = [conv0]
 
-        for i in range(1, len(self.conv)):
+        for i in range(1, self.conv):
             if self.activation == 'relu':
                 c = tf.nn.relu(self.__conv2d(matrix[i-1], weights['w_conv%i' %i]) + biases['b_conv%i' %i])
                 c = self.__maxpool2d(c)
@@ -141,7 +141,7 @@ class CNN:
 
         matrix.append(fc0)
 
-        for i in range(1, len(self.fc)):
+        for i in range(1, self.fc):
             if self.activation == 'relu':
                 f = tf.nn.relu(tf.add(tf.matmul(matrix[i-1],weights['w_fc%i'%i]),biases['b_fc%i'%i]))
                 matrix.append(f)
