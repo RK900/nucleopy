@@ -103,10 +103,9 @@ class CNN:
                                     [math.pow(2,self.conv + i) * 2],
                                     initializer=tf.random_normal_initializer()))
 
-        weights = zip(weights_keys, weights_values)
-        biases = zip(biases_keys, biases_values)
-        weights['out'] = tf.get_variable('w_out', [math.pow(2, self.conv), (self.labels)],
-                                         initializer=tf.random_normal_initializer)
+        weights = dict(zip(weights_keys, weights_values))
+        biases = dict(zip(biases_keys, biases_values))
+        weights['out'] = tf.get_variable('w_out', [int(math.pow(2, self.conv)), int(self.labels)], initializer=tf.random_normal_initializer())
         biases['out'] = tf.get_variable('b_out', [self.labels],
                                         initializer=tf.random_normal_initializer())
 
