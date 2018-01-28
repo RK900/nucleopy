@@ -1,4 +1,9 @@
 # nucleopy
+
+[![Python27](https://img.shields.io/badge/python-2.7-blue.svg)](https://www.python.org/download/releases/2.7/)
+[![Python34](https://img.shields.io/badge/python-3.4-yellow.svg)](https://www.python.org/download/releases/3.4.0/)
+[![License](https://img.shields.io/badge/license-Apache%202.0-black.svg)](https://github.com/RK900/Flu-Prediction/blob/master/LICENSE.txt)
+
 Scientific Python library to easily work with nucleotide data. Users can create `DNA` and `RNA` objects and easily manipulate them
 for use in scientific programming.
 ## Author
