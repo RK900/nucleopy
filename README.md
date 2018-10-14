@@ -11,6 +11,7 @@ Rohan Koodli
 
 ## To Use
 ```pip install nucleopy```
+
 See the `examples` folder for example use cases for nucleopy.
 
 ### Creating a nucleotide object
