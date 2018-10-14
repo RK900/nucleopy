@@ -14,7 +14,7 @@ class Nucleotide(object):
         self.seq = sequence
         self.seq = self.seq.upper()
 
-    def __repr__(self):
+    def __str__(self):
         """
         Printable representation of Nucleotide object
         :return: Sequence
